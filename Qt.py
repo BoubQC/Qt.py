@@ -126,8 +126,8 @@ def _pyqt5():
     _add(PyQt5, "__binding__", PyQt5.__name__)
     _add(PyQt5, "load_ui", lambda fname: uic.loadUi(fname))
     _add(PyQt5, "translate", lambda context, sourceText, disambiguation, n: (
-        QtCore.QCoreApplication(context, sourceText,
-                                disambiguation, n)))
+        QtCore.QCoreApplication.translate(context, sourceText,
+                                          disambiguation, n)))
     _add(PyQt5,
          "setSectionResizeMode",
          QtWidgets.QHeaderView.setSectionResizeMode)
@@ -179,8 +179,9 @@ def _pyqt4():
     _add(PyQt4, "__binding__", PyQt4.__name__)
     _add(PyQt4, "load_ui", lambda fname: uic.loadUi(fname))
     _add(PyQt4, "translate", lambda context, sourceText, disambiguation, n: (
-        QtCore.QCoreApplication(context, sourceText,
-                                disambiguation, None, n)))
+        QtCore.QCoreApplication.translate(context, sourceText,
+                                          disambiguation, None,
+                                          n)))  # Should replace None with QCoreApplication::Encoding?
     _add(PyQt4, "setSectionResizeMode", QtGui.QHeaderView.setResizeMode)
 
     _maintain_backwards_compatibility(PyQt4)
@@ -197,8 +198,8 @@ def _pyside2():
     _add(PySide2, "__binding__", PySide2.__name__)
     _add(PySide2, "load_ui", lambda fname: QtUiTools.QUiLoader().load(fname))
     _add(PySide2, "translate", lambda context, sourceText, disambiguation, n: (
-        QtCore.QCoreApplication(context, sourceText,
-                                disambiguation, None, n)))
+        QtCore.QCoreApplication.translate(context, sourceText,
+                                          disambiguation, n)))
     _add(PySide2,
          "setSectionResizeMode",
          QtWidgets.QHeaderView.setSectionResizeMode)
@@ -229,8 +230,8 @@ def _pyside():
     _add(PySide, "__binding__", PySide.__name__)
     _add(PySide, "load_ui", lambda fname: QtUiTools.QUiLoader().load(fname))
     _add(PySide, "translate", lambda context, sourceText, disambiguation, n: (
-        QtCore.QCoreApplication(context, sourceText,
-                                disambiguation, None, n)))
+        QtCore.QCoreApplication.translate(context, sourceText,
+                                          disambiguation, QtCore.QCoreApplication.CodecForTr, n)))
     _add(PySide, "setSectionResizeMode", QtGui.QHeaderView.setResizeMode)
 
     _maintain_backwards_compatibility(PySide)
